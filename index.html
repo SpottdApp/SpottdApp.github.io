@@ -7,6 +7,24 @@
 		<link rel="stylesheet" href="css/main.css">
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    $.ajax({
+			        url: "http://spottd.herokuapp.com/images/all"
+			    }).then(function(data) {
+			    	for (var i = 0; i < data.length; i++) {
+			    		if (i == 0) {
+			    			$('.gallery').append('<div class="row">');
+			    			console.log('i = 0');
+			    		}
+			    		if (i < 4) {
+			    			$('.row').append('<div class="col-lg-3"><img src="' + data[i].s3Url + ' /></div>');
+			    			console.log('i < 4');
+			    		}
+			    	}
+			    });
+			});
+		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -23,12 +41,12 @@
 		<div class="rest-of-back">
 				<h1><center>Spots in your area.</center></h1>
 				<div class="gallery container-fluid">
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-lg-3"><img src="images/logo.png" /></div>
 						<div class="col-lg-3"><img src="images/logo.png" /></div>
 						<div class="col-lg-3"><img src="images/logo.png" /></div>
 						<div class="col-lg-3"><img src="images/logo.png" /></div>
-					</div>
+					</div> -->
 				</div>
 		</div>
 
